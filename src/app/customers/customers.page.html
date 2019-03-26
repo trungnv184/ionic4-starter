@@ -1,0 +1,46 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title text-center>
+            Customers
+        </ion-title>
+        <ion-buttons slot="end">
+            <ion-button (click)="navigateToCustomerDetailPage()">
+                <ion-icon slot="icon-only"
+                          name="add"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-list>
+        <ion-item-sliding #itemSliding
+                          *ngFor="let customer of customers">
+            <ion-item (click)="editCustomer(customer)">
+                {{ customer.firstName}}
+                <div slot="end">{{ customer.phone }}</div>
+            </ion-item>
+
+            <ion-item-options side="end">
+                <ion-item-option color="danger"
+                                 expandable
+                                 slot="icon-only"
+                                 slot="end"
+                                 (click)="deleteCustomer(customer,itemSliding )">
+                    <ion-icon name="trash"></ion-icon>
+                </ion-item-option>
+            </ion-item-options>
+        </ion-item-sliding>
+    </ion-list>
+</ion-content>
+
+<ion-footer>
+    <ion-button slot="start"
+                expand="full"
+                (click)="navigateToTheFirstCustomerDetailPage()">
+        NavCtr.navigateForward(URL)
+    </ion-button>
+</ion-footer>
